@@ -24,6 +24,7 @@
    * [B树](Chapter02/BTree.md)
    * [B+树](Chapter02/BPlusTree.md)
    * [B*树](Chapter02/B++Tree.md)
+   * [LSM树](Chapter02/LSMTree.md)
    * [霍夫曼树](Chapter02/HuffmanTree.md)
    * [字典树](Chapter02/Trie.md)
    * [堆](Chapter02/Heap.md)
@@ -36,6 +37,10 @@
    * [图](Chapter02/Graph.md)
    * [图存储结构](Chapter02/GraphStorageStructure.md)
    * [图的遍历](Chapter02/TraversalOfGraph.md)
+   * [图最短路径](Chapter02/GraphShortestPath.md)
+   * [图拓扑排序](Chapter02/GraphTopologicalSorting.md)
+   * [图关键路径](Chapter02/FigureCriticalPath.md)
+   * [最小生成树](Chapter02/MinimumSpanningTree.md)
 
 * Part III 算法篇
    * [算法总篇](Chapter03/algorithm.md)
@@ -85,8 +90,8 @@
    * [组合模式](Chapter04/Composite.md)
    * [享元模式](Chapter04/Flyweight.md)
    * [结构性模式总结](Chapter04/SummaryOfStructuralPatterns.md)
-   * [策略模式](Chapter04/Strategy.md)
    * [模板模式](Chapter04/template.md)
+   * [策略模式](Chapter04/Strategy.md)
    * [观察者模式](Chapter04/Observer.md)
    * [迭代器模式](Chapter04/iterator.md)
    * [责任链模式](Chapter04/chainOfResponsibility.md)
