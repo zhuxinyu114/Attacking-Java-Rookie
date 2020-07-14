@@ -46,25 +46,25 @@
 * 2.14 [红黑树](Chapter02/RedBlackTree.md)
 * 2.15 [B树](Chapter02/BTree.md)
 * 2.16 [B+树](Chapter02/BPlusTree.md)
-* 2.17 [B*树](Chapter02/B++Tree.md)
-* 2.18 [LSM树](Chapter02/LSMTree.md)
-* 2.19 [霍夫曼树](Chapter02/HuffmanTree.md)
-* 2.20 [字典树](Chapter02/Trie.md)
-* 2.21 [堆](Chapter02/Heap.md)
-* 2.22 [二叉堆](Chapter02/BinaryHeap.md)
-* 2.23 [队列](Chapter02/Queue.md)
-* 2.24 [优先队列](Chapter02/PriorityQueue.md)
-* 2.25 [栈](Chapter02/Stack.md)
-* 2.26 [最小栈](Chapter02/MinStack.md)
-* 2.27 [散列表](Chapter02/Hash.md)
-* 2.28 [图](Chapter02/Graph.md)
-* 2.29 [图存储结构](Chapter02/GraphStorageStructure.md)
-* 2.30 [图的遍历](Chapter02/TraversalOfGraph.md)
-* 2.31 [图最短路径](Chapter02/GraphShortestPath.md)
-* 2.32 [图拓扑排序](Chapter02/GraphTopologicalSorting.md)
-* 2.33 [图关键路径](Chapter02/FigureCriticalPath.md)
-* 2.34 [最小生成树](Chapter02/MinimumSpanningTree.md)
-
+* 2.17 [为什么MongoDB索引选择B树而Mysql选择B+树](Chapter02/B&BPlusTree.md)
+* 2.18 [B*树](Chapter02/B++Tree.md)
+* 2.19 [LSM树](Chapter02/LSMTree.md)
+* 2.20 [霍夫曼树](Chapter02/HuffmanTree.md)
+* 2.21 [字典树](Chapter02/Trie.md)
+* 2.22 [堆](Chapter02/Heap.md)
+* 2.23 [二叉堆](Chapter02/BinaryHeap.md)
+* 2.24 [队列](Chapter02/Queue.md)
+* 2.25 [优先队列](Chapter02/PriorityQueue.md)
+* 2.26 [栈](Chapter02/Stack.md)
+* 2.27 [最小栈](Chapter02/MinStack.md)
+* 2.28 [散列表](Chapter02/Hash.md)
+* 2.29 [图](Chapter02/Graph.md)
+* 2.30 [图存储结构](Chapter02/GraphStorageStructure.md)
+* 2.31 [图的遍历](Chapter02/TraversalOfGraph.md)
+* 2.32 [图最短路径](Chapter02/GraphShortestPath.md)
+* 2.33 [图拓扑排序](Chapter02/GraphTopologicalSorting.md)
+* 2.34 [图关键路径](Chapter02/FigureCriticalPath.md)
+* 2.35 [最小生成树](Chapter02/MinimumSpanningTree.md)
 
 第三章 算法篇
 * 3.1  [算法总篇](Chapter03/algorithm.md)
@@ -92,6 +92,7 @@
 * 3.23 [缓存算法](Chapter03/CachingAlgorithm.md)
 * 3.24 [LRU](Chapter03/LRU.md)
 * 3.25 [LFU](Chapter03/LFU.md)
+* 3.26 [加密算法](Chapter03/encryption.md)
 
 第四章 设计模式
 * 4.1  [面向对象](Chapter04/objectOriented.md)
@@ -127,30 +128,56 @@
 * 4.30 [访问者模式](Chapter04/Visitor.md)
 * 4.31 [中介模式](Chapter04/Intermediary.md)
 * 4.32 [解释器模式](Chapter04/Interpreter.md)
-* 4.33 [行为模式总结](Chapter04/iterator.md)
+* 4.33 [行为模式总结](Chapter04/SummaryOfBehaviorPatterns.md)
 * 4.34 [java中的设计模式](Chapter04/designInJava.md)
 * 4.35 [spring中的设计模式](Chapter04/designInSpring.md)
 
 第五章 JAVA篇
-* 5.1 [init and clinit](Chapter05/init.md)
-* 5.2 [Hashcode](Chapter05/Hashcode.md)
-* 5.3 [Transient](Chapter05/Transient.md)
-* 5.4 [modCount](Chapter05/modCount.md)
-* 5.4 [String](Chapter05/String.md)
-* 5.5 [Thread](Chapter05/Thread.md)
-* 5.6 [Executors](Chapter05/Executors.md)
-* 5.7 [SourceCode](Chapter05/SourceCode.md)
-* 5.8 [KeyTool](Chapter05/KeyTool.md)
+* 5.1  [init and clinit](Chapter05/init.md)
+* 5.2  [Hashcode](Chapter05/Hashcode.md)
+* 5.3  [深入分析java中的关键字void](Chapter05/void.md)
+* 5.4  [深入分析java中的关键字static](Chapter05/Static.md)
+* 5.5  [深入分析java中的关键字final](Chapter05/final.md)
+* 5.6  [深入分析java中的关键字this](Chapter05/this.md)
+* 5.7  [深入分析java中的关键字super](Chapter05/super.md)
+* 5.8  [深入分析java中的多态(从jvm角度分析)](Chapter05/Polymorphism.md)
+* 5.9  [深入理解wait和notify](Chapter05/wait-notify.md)
+* 5.10 [深入理解LockSupport](Chapter05/LockSupport.md)
+* 5.11  [Transient](Chapter05/Transient.md)
+* 5.12 [modCount](Chapter05/modCount.md)
+* 5.13 [String](Chapter05/String.md)
+* 5.14 [Thread](Chapter05/Thread.md)
+* 5.15 [Executors](Chapter05/Executors.md)
+* 5.16 [SourceCode](Chapter05/SourceCode.md)
+* 5.17 [KeyTool](Chapter05/KeyTool.md)
 
-第六章 计算机原理篇
+第六章 数据库篇
+* 6.1 [mysql时区](Chapter06/MysqlServerTimezone.md)
+* 6.2 [innodb线程](Chapter06/innodbThread.md)
+* 6.3 [/g/G](Chapter06/gG.md)
+* 6.4 [mysql命令集](Chapter06/CommandSet.md)
+* 6.5 [聚集索引和非聚集索引](Chapter06/ClusteredIndex.md)
+* 6.6 [OLTP&OLAP](Chapter06/OLTP&OLAP.md)
+* 6.7 [术语](Chapter06/term.md)
 
 第七章 JVM篇
 
-第八章 锁篇
 
-第九章 多线程篇
+第八章 中间件篇
+* 8.1 [RabbitMq](Chapter08/RabbitmqInstallation.md)
+* 8.2 [Kafka](Chapter08/KafkaInstallation.md)
+* 8.3 [Zookeeper](Chapter08/ZookeeperInstallation.md)
+* 8.4 [Redis高并发](Chapter08/RedisHighConcurrency.md)
 
-第十章 AQS篇
+第八章 计算机原理篇
+
+
+
+第九章 锁篇
+
+第十章 多线程篇
+
+第十一章 AQS篇
 
 
 
@@ -182,10 +209,6 @@
 * 8.3 [Zookeeper](Chapter08/ZookeeperInstallation.md)
 
 第九章 数据库篇
-* 9.1 [mysql时区](Chapter09/MysqlServerTimezone.md)
-* 9.2 [innodb线程](Chapter09/innodbThread.md)
-* 9.3 [/g/G](Chapter09/gG.md)
-* 9.4 [mysql命令集](Chapter09/CommandSet.md)
 
 
 第十二章 JVM篇

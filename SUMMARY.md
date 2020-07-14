@@ -23,6 +23,7 @@
    * [红黑树](Chapter02/RedBlackTree.md)
    * [B树](Chapter02/BTree.md)
    * [B+树](Chapter02/BPlusTree.md)
+   * [为什么MongoDB索引选择B树而Mysql选择B+树](Chapter02/B&BPlusTree.md)
    * [B*树](Chapter02/B++Tree.md)
    * [LSM树](Chapter02/LSMTree.md)
    * [霍夫曼树](Chapter02/HuffmanTree.md)
@@ -68,6 +69,7 @@
    * [缓存算法](Chapter03/CachingAlgorithm.md)
    * [LRU](Chapter03/LRU.md)
    * [LFU](Chapter03/LFU.md)
+   * [加密算法](Chapter03/encryption.md)
 
 * Part IV 设计模式
    * [面向对象](Chapter04/objectOriented.md)
@@ -103,17 +105,19 @@
    * [访问者模式](Chapter04/Visitor.md)
    * [中介模式](Chapter04/Intermediary.md)
    * [解释器模式](Chapter04/Interpreter.md)
-   * [行为模式总结](Chapter04/iterator.md)
+   * [行为模式总结](Chapter04/SummaryOfBehaviorPatterns.md)
 
-* Part V JAVA篇
+* Part V JAVA篇   
    * [init and clinit](Chapter05/init.md)
    * [Hashcode](Chapter05/Hashcode.md)
-   * [Transient](Chapter05/Transient.md)
-   * [String](Chapter05/String.md)
-   * [Thread](Chapter05/Thread.md)
-   * [Executors](Chapter05/Executors.md)
-   * [SourceCode](Chapter05/SourceCode.md)
-   * [KeyTool](Chapter05/KeyTool.md)
+   * [深入分析java中的关键字void](Chapter05/void.md)
+   * [深入分析java中的关键字static](Chapter05/Static.md)
+   * [深入分析java中的关键字final](Chapter05/final.md)
+   * [深入分析java中的关键字this](Chapter05/this.md)
+   * [深入分析java中的关键字super](Chapter05/super.md)
+   * [深入分析java中的多态(从jvm角度分析)](Chapter05/Polymorphism.md)
+   * [深入理解wait和notify](Chapter05/wait-notify.md)
+   * [深入理解LockSupport](Chapter05/LockSupport.md)
 
 * Part VI SPRING篇
    * [IOC](Chapter06/IOC.md)
@@ -145,7 +149,6 @@
    * [系统内核](Chapter11/core.md)
   
 * Part XII JVM篇
-
    * [jvm](./Chapter12/jvm.md)
    * [jvm指令集](./Chapter12/jvm指令集.md)
    * [jstack](./Chapter12/jstack.md)
@@ -175,4 +178,3 @@
    * [redis-desktop-manager](Chapter20/redis-desktop-manager.md)
    * [文件服务器](Chapter20/file.md)
    * [git](Chapter20/git.md)
-   
