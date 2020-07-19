@@ -209,4 +209,4 @@ public class FireArrayVector<E> implements FireVector<E> {
 
 ```
 
-    Java本身也提供了与向量ADT功能类似的两个类：java.util.ArrayList和java.util.Vector。
+> Java本身也提供了与向量ADT功能类似的两个类：java.util.ArrayList和java.util.Vector。

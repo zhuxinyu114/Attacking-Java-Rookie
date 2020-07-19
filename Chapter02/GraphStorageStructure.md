@@ -183,11 +183,530 @@ V1顶点的邻接顶点为V2、V3、V4，但是以V1顶点为尾的边只有两�
 
 其中，data存储顶点的相关信息，firstedge指向第一条依附于该顶点的边。
 
-例如：图9.1所示的无向图，采用邻接多重表存储图。
+例如：下图所示的无向图，采用邻接多重表存储图。
 
 ![图](../image/c2/GST-19.png)
 
-图 9.1 所示的无向图，采用邻接多重表存储，以 V0 为例，顶点节点的data域存储V0名称，firstedge 指向(V0 , V1)边，边节点中的ilink指向依附V0顶点的下一条边(V0 , V3)，jlink指向依附V1顶点的下一条边(V1 , V2)，按照此方式建立邻接多重表：
+上图所示的无向图，采用邻接多重表存储，以 V0 为例，顶点节点的data域存储V0名称，firstedge 指向(V0 , V1)边，边节点中的ilink指向依附V0顶点的下一条边(V0 , V3)，jlink指向依附V1顶点的下一条边(V1 , V2)，按照此方式建立邻接多重表：
 
 ![图](../image/c2/GST-20.png)
 
+
+基于列表实现的顶点与边的结构：
+
+![图](../image/c2/GST-22.png)
+
+##### （有向）图的顶点结构接口
+
+```java
+package dsa.Graph;
+
+import dsa.Iterator.Iterator;
+import other.Position;
+
+public interface Vertex {
+
+    /*
+     * （有向）图的顶点结构接口
+     */
+    // 常量
+    final static int UNDISCOVERED = 0;// 尚未被发现的顶点
+    final static int DISCOVERED = 1;// 已被发现的顶点
+    final static int VISITED = 2;// 已访问过的顶点
+    // 返回当前顶点的信息
+
+    public Object getInfo();
+
+    // 将当前顶点的信息更新为x，并返回原先的信息
+    public Object setInfo(Object x);
+
+    // 返回当前顶点的出、入度
+    public int outDeg();
+
+    public int inDeg();
+
+    // 返回当前顶点所有关联边、关联边位置的迭代器
+    public Iterator inEdges();
+
+    public Iterator inEdgePositions();
+
+    public Iterator outEdges();
+
+    public Iterator outEdgePositions();
+
+    // 取当前顶点在所属的图的顶点集V中的位置
+    public Position getVPosInV();
+
+    // 读取、设置顶点的状态（DFS + BFS）
+    public int getStatus();
+
+    public int setStatus(int s);
+
+    // 读取、设置顶点的时间标签（DFS）
+    public int getDStamp();
+
+    public int setDStamp(int s);
+
+    public int getFStamp();
+
+    public int setFStamp(int s);
+
+    // 读取、设置顶点至起点的最短距离（BFS或BestFS）
+    public int getDistance();
+
+    public int setDistance(int s);
+
+    // 读取、设置顶点在的DFS、BFS、BestFS或MST树中的父亲
+    public Vertex getBFSParent();
+
+    public Vertex setBFSParent(Vertex s);
+}
+```
+##### （有向）图的边结构接口
+
+```java
+package dsa.Graph;
+
+import other.Position;
+
+public interface Edge {
+
+    /*
+     * （有向）图的边结构接口
+     */
+    // 常量
+    final static int UNKNOWN = 0;// 未知边
+    final static int TREE = 1;// 树边
+    final static int CROSS = 2;// 横跨边
+    final static int FORWARD = 3;// 前向跨边
+    final static int BACKWARD = 4;// 后向跨边
+    // 返回当前边的信息（对于带权图，也就是各边的权重）
+
+    public Object getInfo();
+
+    // 将当前边的信息更新为x，并返回原先的信息
+    public Object setInfo(Object x);
+
+    // 取当前边在所属的图的边集E中的位置
+    public Position getEPosInE();
+
+    // 取v[i]在顶点集V中的位置（i=0或1，分别对应于起点、终点）
+    public Position getVPosInV(int i);
+
+    // 当前边在其两个端点的关联边集I(v[i])中的位置
+    public Position getEPosInI(int i);
+
+    // 读取、设置边的类别（针对遍历）
+    public int getType();
+
+    public int setType(int t);
+}
+```
+
+##### （有向）图结构接口
+
+```java
+package dsa.Graph;
+
+import dsa.Iterator.Iterator;
+import other.Position;
+
+public interface Graph {
+
+    /*
+     * （有向）图结构接口 
+     */
+
+    // 取图中顶点、边的数目
+    public int vNumber();
+
+    public int eNumber();
+
+    // 取图中所有顶点、顶点位置的迭代器
+    public Iterator vertices();
+
+    public Iterator vPositions();
+
+    // 返回图中所有边、边位置的迭代器
+    public Iterator edges();
+
+    public Iterator ePositions();
+
+    // 检测是否有某条边从顶点u指向v
+    public boolean areAdjacent(Vertex u, Vertex v);
+
+    // 取从顶点u指向v的边，若不存在，则返回null
+    public Edge edgeFromTo(Vertex u, Vertex v);
+
+    // 将顶点v从顶点集中删除，并返回之
+    public Vertex remove(Vertex v);
+
+    // 将边e从边集中删除，并返回之
+    public Edge remove(Edge e);
+
+    // 在顶点集V中插入新顶点v，并返回其位置
+    public Position insert(Vertex v);
+
+    // 在边集E中插入新边e，并返回其位置
+    public Position insert(Edge e);
+}
+```
+
+##### 基于邻接边表实现图的顶点结构
+
+```java
+package dsa.Graph;
+
+import dsa.Iterator.Iterator;
+import dsa.List.List;
+import dsa.List.List_DLNode;
+import other.Position;
+
+public class Vertex_List implements Vertex {
+
+    /*
+     * 基于邻接边表实现图的顶点结构
+     */
+
+    // 变量
+    protected Object info;// 当前顶点中存放的数据元素
+    protected Position vPosInV;// 当前顶点在所属的图的顶点表V中的位置
+    protected List outEdges;// 关联边表：存放以当前顶点为尾的所有边（的位置）
+    protected List inEdges;// 关联边表：存放以当前顶点为头的所有边（的位置）
+    protected int status;// （在遍历图等操作过程中）顶点的状态
+    protected int dStamp;// 时间标签：DFS过程中该顶点被发现时的时刻
+    protected int fStamp;// 时间标签：DFS过程中该顶点被访问结束时的时刻
+    protected int distance;// 到指定起点的距离：BFS、Dijkstra等算法所确定该顶点到起点的距离
+    protected Vertex bfsParent;// 在最短距离树（BFS或BestFS）中的父亲
+    // 构造方法：在图G中引入一个属性为x的新顶点
+
+    public Vertex_List(Graph G, Object x) {
+        info = x;// 数据元素
+        vPosInV = G.insert(this);// 当前顶点在所属的图的顶点表V中的位置
+        outEdges = new List_DLNode();// 出边表
+        inEdges = new List_DLNode();// 入边表
+        status = UNDISCOVERED;
+        dStamp = fStamp = Integer.MAX_VALUE;
+        distance = Integer.MAX_VALUE;
+        bfsParent = null;
+    }
+
+    // 返回当前顶点的信息
+    public Object getInfo() {
+        return info;
+    }
+
+    // 将当前顶点的信息更新为x，并返回原先的信息
+    public Object setInfo(Object x) {
+        Object e = info;
+        info = x;
+        return e;
+    }
+
+    // 返回当前顶点的出、入度
+    public int outDeg() {
+        return outEdges.getSize();
+    }
+
+    public int inDeg() {
+        return inEdges.getSize();
+    }
+
+    // 返回当前顶点所有关联边、关联边位置的迭代器
+    public Iterator inEdges() {
+        return inEdges.elements();
+    }
+
+    public Iterator inEdgePositions() {
+        return inEdges.positions();
+    }
+
+    public Iterator outEdges() {
+        return outEdges.elements();
+    }
+
+    public Iterator outEdgePositions() {
+        return outEdges.positions();
+    }
+
+    // 取当前顶点在所属的图的顶点集V中的位置
+    public Position getVPosInV() {
+        return vPosInV;
+    }
+
+    // 读取、设置顶点的状态（DFS + BFS）
+    public int getStatus() {
+        return status;
+    }
+
+    public int setStatus(int s) {
+        int ss = status;
+        status = s;
+        return ss;
+    }
+
+    // 读取、设置顶点的时间标签（DFS）
+    public int getDStamp() {
+        return dStamp;
+    }
+
+    public int setDStamp(int s) {
+        int ss = dStamp;
+        dStamp = s;
+        return ss;
+    }
+
+    public int getFStamp() {
+        return fStamp;
+    }
+
+    public int setFStamp(int s) {
+        int ss = fStamp;
+        fStamp = s;
+        return ss;
+    }
+
+    // 读取、设置顶点至起点的最短距离（BFS）
+    public int getDistance() {
+        return distance;
+    }
+
+    public int setDistance(int s) {
+        int ss = distance;
+        distance = s;
+        return ss;
+    }
+
+    // 读取、设置顶点在的DFS、BFS、BestFS或MST树中的父亲
+    public Vertex getBFSParent() {
+        return bfsParent;
+    }
+
+    public Vertex setBFSParent(Vertex s) {
+        Vertex ss = bfsParent;
+        bfsParent = s;
+        return ss;
+    }
+}
+```
+
+##### 基于邻接边表实现图的边结构
+
+```java
+package dsa.Graph;
+
+import dsa.Deque.DLNode;
+import other.Position;
+
+public class Edge_List implements Edge {
+
+    /*
+     * 基于邻接边表实现图的边结构
+     */
+
+    // 变量
+    protected Object info;// 当前边中存放的数据元素
+    protected Position ePosInE;// 当前边在所属的图的边表中的位置
+    protected Position vPosInV[];// 当前边两个端点在顶点表中的位置
+    protected Position ePosInI[];// 当前边在其两个端点的关联边表中的位置
+    // 约定：第0（1）个顶点分别为尾（头）顶点
+    // 禁止头、尾顶点相同的边
+    protected int type;// （经过遍历之后）边被归入的类别
+    // 构造方法：在图G中，生成一条从顶点u到v的新边（假定该边尚不存在）
+
+    public Edge_List(Graph G, Vertex_List u, Vertex_List v, Object x) {
+        info = x;// 数据元素
+        ePosInE = G.insert(this);// 当前边在所属的图的边表中的位置
+        vPosInV = new DLNode[2];// 当前边两个端点在顶点表中的位置
+        vPosInV[0] = u.getVPosInV();
+        vPosInV[1] = v.getVPosInV();
+        ePosInI = new DLNode[2];// 当前边在其两个端点的关联边表中的位置
+        ePosInI[0] = u.outEdges.insertLast(this);// 当前边加入u的邻接（出）边表
+        ePosInI[1] = v.inEdges.insertLast(this);// 当前边加入v的邻接（入）边表
+        type = UNKNOWN;
+    }
+
+    // 返回当前边的信息
+    public Object getInfo() {
+        return info;
+    }
+
+    // 将当前边的信息更新为x，并返回原先的信息
+    public Object setInfo(Object x) {
+        Object e = info;
+        info = x;
+        return e;
+    }
+
+    // 取当前边在所属的图的边集E中的位置
+    public Position getEPosInE() {
+        return ePosInE;
+    }
+
+    // 取v[i]在顶点集V中的位置（i=0或1，分别对应于起点、终点）
+    public Position getVPosInV(int i) {
+        return vPosInV[i];
+    }
+
+    // 当前边在其两个端点的关联边集I(v[i])中的位置
+    public Position getEPosInI(int i) {
+        return ePosInI[i];
+    }
+
+    // 读取、设置边的类别（针对遍历）
+    public int getType() {
+        return type;
+    }
+
+    public int setType(int t) {
+        int tt = type;
+        type = t;
+        return tt;
+    }
+}
+```
+
+##### 基于邻接边表实现图结构
+
+```java
+package dsa.Graph;
+
+import dsa.Iterator.Iterator;
+import dsa.List.List;
+import dsa.List.List_DLNode;
+import other.Position;
+
+public class Graph_List implements Graph {
+    /*
+     * 基于邻接边表实现图结构
+     */
+    // 变量
+    protected List E;// 容器：存放图中所有边
+    protected List V;// 容器：存放图中所有顶点
+    // 构造方法
+
+    public Graph_List() {
+        E = new List_DLNode();
+        V = new List_DLNode();
+    }
+
+    // 取图的边表、顶点表
+    protected List getE() {
+        return E;
+    }
+
+    protected List getV() {
+        return V;
+    }
+
+    // 取图中顶点、边的数目
+    public int vNumber() {
+        return V.getSize();
+    }
+
+    public int eNumber() {
+        return E.getSize();
+    }
+
+    // 取图中所有顶点、顶点位置的迭代器
+    public Iterator vertices() {
+        return V.elements();
+    }
+
+    public Iterator vPositions() {
+        return V.positions();
+    }
+
+    // 返回图中所有边、边位置的迭代器
+    public Iterator edges() {
+        return E.elements();
+    }
+
+    public Iterator ePositions() {
+        return E.positions();
+    }
+
+    // 检测是否有某条边从顶点u指向v
+    public boolean areAdjacent(Vertex u, Vertex v) {
+        return (null != edgeFromTo(u, v));
+    }
+
+    // 取从顶点u指向v的边，若不存在，则返回null
+    public Edge edgeFromTo(Vertex u, Vertex v) {
+        for (Iterator it = u.outEdges(); it.hasNext();) {// 逐一检查
+            Edge e = (Edge) it.getNext();// 以u为尾的每一条边e
+            if (v == e.getVPosInV(1).getElem())// 若e是(u, v)，则
+                return e;// 返回该边
+        }
+        return null;// 若不存在这样的(u, v)，则返回null
+    }
+
+    // 将顶点v从顶点集中删除，并返回之
+    public Vertex remove(Vertex v) {
+        while (0 < v.outDeg())// 将以v为尾的所有边
+            remove((Edge) (((Vertex_List) v).outEdges.first()).getElem());// 逐一删除
+        while (0 < v.inDeg())// 将以v为头的所有边
+            remove((Edge) (((Vertex_List) v).inEdges.first()).getElem());// 逐一删除
+        return (Vertex) V.remove(v.getVPosInV());// 在顶点表中删除v
+    }
+
+    // 将边e从边集中删除，并返回之
+    public Edge remove(Edge e) {
+        ((Vertex_List) e.getVPosInV(0).getElem()).outEdges.remove(e.getEPosInI(0));// 从起点的出边表中删除e
+        ((Vertex_List) e.getVPosInV(1).getElem()).inEdges.remove(e.getEPosInI(1));// 从终点的入边表中删除e
+        return (Edge) E.remove(e.getEPosInE());// 从边表中删除e
+    }
+
+    // 在顶点集V中插入新顶点v，并返回其位置
+    public Position insert(Vertex v) {
+        return V.insertLast(v);
+    }
+
+    // 在边集E中插入新边e，并返回其位置
+    public Position insert(Edge e) {
+        return E.insertLast(e);
+    }
+}
+```
+
+这里主要涉及三个算法，具体分析如下：
+
+判断任意一对顶点是否相邻
+
+> 算法：areAdjacent(u, v)
+  输入：一对顶点u和v
+  输出：判断是否有某条边从顶点u指向v
+  {
+  取顶点u的出边迭代器it;
+  通过it逐一检查u的每一条出边e;
+  一旦e的终点为v，则报告true;
+  若e的所有出边都已检查过，则返回false;
+  }
+  
+* 删除边
+
+> 算法：RemoveEdge(e)
+  输入：边e = (u, v)
+  输出：将边e从边集E中删除
+  {
+  从起点u的出边邻接表中删除e;
+  从终点v的入边邻接表中删除e;
+  从边表E中删除e;
+  }
+
+* 删除顶点
+
+> 算法：removeVertex(v)
+  输入：顶点v
+  输出：将顶点v从顶点集V中删除
+  {
+  扫描v的出边邻接表，（调用removeEdge()算法）将所有边逐一删除;
+  扫描v的入边邻接表，（调用removeEdge()算法）将所有边逐一删除;
+  在顶点表V中删除v;
+  }
+  
+### 边集数组
+边集数组是由两个一维数组构成，一个是存储顶点的信息，
+另一个是存储边的信息，这个边数组每个数据元素由一条边的起点下标(begin)、终点下标(end)和权(weight)组成。
+
+![图](../image/c2/GST-21.png)

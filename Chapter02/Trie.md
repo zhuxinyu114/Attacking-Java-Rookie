@@ -5,6 +5,12 @@
 主要用于搜索字典中的单词，在搜索引擎中自动提供建议，
 甚至被用于IP的路由。
 
+Trie 树，也叫字典树，专门做字符串匹配的数据结构，也可快速的做字符串前缀匹配。
+
+它是一种多叉树，即把前缀相同的字符串合并在一起，根节点默认不存储字符。如下图所示：
+
+![字典树](../image/c2/trie-3.jpg)
+
 
 以下是在字典树中存储三个单词“top”，“so”和“their”的例子：
 
@@ -22,15 +28,156 @@ hi 、her、how 的插入过程如下：
 
 ### 查找
 
-###### 查找 hi 过程
+##### 查找 hi 过程
 
 1. 从根节点 root 开始，查找其子节点有无 h，结果是有
 2. 查找 h 的子节点有无 i，结果也有，同时 i 是末尾节点，表示是个完整的字符串，匹配完成。
 
-###### 查找 he 过程
+##### 查找 he 过程
 
 1. 从根节点 root 开始，查找其子节点有无 h，结果是有
 2. 查找 h 的子节点有无 e，结果也有，但 e 不是末尾节点，表示其只是匹配到了前缀，并不能完全匹配到 he。
+
+### 实现
+
+前面提到过，Trie 树是多叉树，节点的取值范围在字符串的所有可能出现的字符集内。如字符串包含的只是 a-z，那么最多只需要 26 个子节点；如果字符串包含 a-zA-Z，那么最多需要 52 个自己点；以此类推。
+
+当然，不是每个节点的子节点都会包含所有字符集，不存在的子节点设置为 null。
+
+所以，假设字符集为 a-z ，总共 26 个小写字母，其数据结构如下：
+
+```java
+class TrieNode {
+    var data: Character
+    
+    // 字符集 26 个小写字母
+    var children: [TrieNode?]
+    var isEnd: Bool = false
+    
+    init(data: Character) {
+        self.data = data
+        
+        children = [TrieNode]()
+        
+        // 初始化 26 个
+        var i = 0
+        while i < 26 {
+            children.append(nil)
+            i += 1
+        }
+    }
+}
+```
+
+需要取子节点时，只需要算出 index = ch - 'a' ，然后根据 p.children[index] 取出即可，为 null 则表示不存在该 ch 字符。
+
+Trie 树定义如下，包含插入和查找两个方法。
+
+```java
+class Trie {
+    let root = TrieNode(data: Character("/"))
+
+    // 插入
+    func insert(text: String) {}
+
+    // 查找
+    func match(text: String) -> Bool {}
+    
+    // 计算index
+    func indexOfChar(_ ch: Character) -> Int {
+        let index = ch.toInt() - Character("a").toInt()
+        return index
+    }
+}
+```
+
+##### 插入
+
+逐个遍历字符串，若当前节点不存在该字符对应的子节点，则生成新的节点插入；若存在，则沿着树的分支继续往下走。当遍历完成，将最后一个节点结束符 isEnd 置为 true。
+
+```java
+func insert(text: String) {
+    var p = root
+    
+    var i = 0
+    while i < text.count {
+        let strIndex = text.index(text.startIndex, offsetBy: i)
+        
+        let ch = text[strIndex]
+        
+        // 计算 index
+        let index = indexOfChar(ch)
+        if index < 0 || index >= 26 {
+            assert(false, "包含非法字符")
+        }
+        
+        if (index >= 0 && index <= p.children.count) {
+            if p.children[index] == nil {
+                // 插入新节点
+                let node = TrieNode(data: ch)
+                p.children[index] = node
+            }
+            
+            p = p.children[index]!
+        }
+        
+        i += 1
+    }
+    
+    // 标记结束
+    p.isEnd = true
+}
+```
+
+##### 查找
+
+逐个遍历字符串，若当前节点不存在该字符对应的子节点，则说明不匹配；若存在，则沿着树的分支继续往下走。当遍历完成，若最后一个节点是结束符，则完全匹配；否则只是前缀匹配。
+
+```java
+func match(text: String) -> Bool {
+        
+    var p = root
+    
+    var i = 0
+    while i < text.count {
+        let strIndex = text.index(text.startIndex, offsetBy: i)
+        
+        let ch = text[strIndex]
+        
+        // 计算 index
+        let index = indexOfChar(ch)
+        
+        if (index >= 0 && index <= p.children.count) {
+            if p.children[index] != nil {
+                p = p.children[index]!
+            } else {
+                // 不匹配
+                return false
+            }
+        } else {
+            return false
+        }
+        
+        i += 1
+    }
+    
+    // 完全匹配
+    if p.isEnd {
+        return true
+    }
+    
+    return false
+}
+```
+
+### 效率
+
+Trie 树构建时，需要遍历所有的字符串，因此时间复杂度为所有字符串长度总和 n，时间复杂度为 O(n)。
+    
+但是 Trie 树的查找效率很高，如果字符串长度为 k，那么时间复杂度 为 O(k)。
+    
+Trie 是一种以空间换时间的结构，当字符集较大时，会占用很多空间，同时如果前缀重合较少，空间会占用更多。所以其比较适合查找前缀匹配。
+    
 
 ### Tire树的应用：
 
