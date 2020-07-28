@@ -157,17 +157,17 @@
 * 5.16 [SourceCode](Chapter05/SourceCode.md)
 * 5.17 [KeyTool](Chapter05/KeyTool.md)
 
-第六章 数据库篇
-* 6.1 [mysql时区](Chapter06/MysqlServerTimezone.md)
-* 6.2 [innodb线程](Chapter06/innodbThread.md)
-* 6.3 [/g/G](Chapter06/gG.md)
-* 6.4 [mysql命令集](Chapter06/CommandSet.md)
-* 6.5 [聚集索引和非聚集索引](Chapter06/ClusteredIndex.md)
-* 6.6 [OLTP&OLAP](Chapter06/OLTP&OLAP.md)
-* 6.7 [术语](Chapter06/term.md)
+第六章 JVM篇
+* 6.1 [JVM内存管理](./Chapter06/JvmMemoryManagement.md)
+* 6.2 [垃圾回收](./Chapter06/GC.md)
+* 6.? [jvm指令集](./Chapter06/jvm指令集.md)
+* 6.? [jstack](./Chapter06/jstack.md)
 
-第七章 JVM篇
-
+第七章 Java并发原理
+* 7.1 [计算机体系结构基础知识](Chapter07/BasicKnowledgeOfComputerArchitecture.md)
+* 7.2 [java并发必知的计算机原理知识](Chapter07/JavaConcurrencyMustKnowComputerPrinciplesKnowledge.md)
+* 7.3 [java并发必知的底层CPU知识](Chapter07/JavaConcurrencyMustKnowTheUnderlyingCPUKnowledge.md)
+* 7.1 [深入剖析可重入锁ReentrantLock](Chapter07/ReentrantLock.md)
 
 第八章 中间件篇
 * 8.1 [RabbitMq](Chapter08/RabbitmqInstallation.md)
@@ -175,54 +175,27 @@
 * 8.3 [Zookeeper](Chapter08/ZookeeperInstallation.md)
 * 8.4 [Redis高并发](Chapter08/RedisHighConcurrency.md)
 
-第八章 计算机原理篇
-
-
-
-第九章 锁篇
-
-第十章 多线程篇
-
-第十一章 AQS篇
-
-
-
-第十一章 系统篇
-* 11.1 [查看cpu核数](Chapter11/cpu.md)
-* 11.2 [防火墙](Chapter11/firewall.md)
-* 11.3 [系统内核](Chapter11/core.md)
-
-第十一章 NIO篇
+第九章 数据库篇
+* 9.1 [mysql时区](Chapter09/MysqlServerTimezone.md)
+* 9.2 [innodb线程](Chapter09/innodbThread.md)
+* 9.3 [/g/G](Chapter09/gG.md)
+* 9.4 [mysql命令集](Chapter09/CommandSet.md)
+* 9.5 [聚集索引和非聚集索引](Chapter09/ClusteredIndex.md)
+* 9.6 [OLTP&OLAP](Chapter09/OLTP&OLAP.md)
+* 9.7 [术语](Chapter09/term.md)
 
 第十章 网络篇
 * 10.1 [Http与Https协议规范](Chapter10/http.md)
 
-第六章 SPRING篇
-* 6.1 [IOC](Chapter06/IOC.md)
-
-第七章 CLOUD篇
-* 7.1 [CAP](Chapter07/cap.md)
-* 7.2 [注册中心](Chapter07/RegistrationCenter.md)
-* 7.3 [Spring Cloud Stream](Chapter07/stream.md)
-* 7.4 [ZipkinServer](Chapter07/ZipkinServer.md)
-* 7.5 [Spring Cloud Sleuth](Chapter07/sleuth.md)
-
-第十一章 netty篇
-
-第八章 中间件篇
-* 8.1 [RabbitMq](Chapter08/RabbitmqInstallation.md)
-* 8.2 [Kafka](Chapter08/KafkaInstallation.md)
-* 8.3 [Zookeeper](Chapter08/ZookeeperInstallation.md)
-
-第九章 数据库篇
+第十一章 SPRING篇
 
 
-第十二章 JVM篇
-* 12.1 [JVM内存管理](./Chapter12/JvmMemoryManagement.md)
-* 12.2 [垃圾回收](./Chapter12/GC.md)
-
-* 12.? [jvm指令集](./Chapter12/jvm指令集.md)
-* 12.? [jstack](./Chapter12/jstack.md)
+第十二章 CLOUD篇
+* 12.1 [CAP](Chapter12/cap.md)
+* 12.2 [注册中心](Chapter12/RegistrationCenter.md)
+* 12.3 [Spring Cloud Stream](Chapter12/stream.md)
+* 12.4 [ZipkinServer](Chapter12/ZipkinServer.md)
+* 12.5 [Spring Cloud Sleuth](Chapter12/sleuth.md)
 
 第十三章 架构篇
 * 13.1 [SAAS](./Chapter13/saas.md)
@@ -237,6 +210,17 @@
 * 15.3 [Service配置及管理](./Chapter15/cas3.md)
 * 15.4 [Service配置及管理](./Chapter15/cas4.md)
 * 15.5 [客户端接入](./Chapter15/cas5.md)
+
+第十六章  系统篇
+* 16.1 [查看cpu核数](Chapter16/cpu.md)
+* 16.2 [防火墙](Chapter16/firewall.md)
+* 16.3 [系统内核](Chapter16/core.md)
+
+第十七章 netty篇
+
+第十八章 计算机原理篇
+
+第十九章
 
 附录
 * [翻墙](Chapter20/OverTheWall.md)

@@ -124,39 +124,45 @@
    * [深入理解wait和notify](Chapter05/wait-notify.md)
    * [深入理解LockSupport](Chapter05/LockSupport.md)
 
-* Part VI SPRING篇
-   * [IOC](Chapter06/IOC.md)
+* Part VI JVM篇
+   * [JVM内存管理](./Chapter06/JvmMemoryManagement.md)
+   * [垃圾回收](./Chapter06/GC.md)
+   * [jvm指令集](./Chapter06/jvm指令集.md)
+   * [jstack](./Chapter06/jstack.md)
 
-* Part VII CLOUD篇
-   * [CAP](Chapter07/cap.md)
-   * [Registration Center](Chapter07/RegistrationCenter.md)
-   * [Spring Cloud Stream](Chapter07/stream.md)
-   * [ZipkinServer](Chapter07/ZipkinServer.md)
-   * [Spring Cloud Sleuth](Chapter07/sleuth.md)
+* Part VII Java并发原理
+   * [计算机体系结构基础知识](Chapter07/BasicKnowledgeOfComputerArchitecture.md)
+   * [java并发必知的计算机原理知识](Chapter07/JavaConcurrencyMustKnowComputerPrinciplesKnowledge.md)
+   * [java并发必知的底层CPU知识](Chapter07/JavaConcurrencyMustKnowTheUnderlyingCPUKnowledge.md)
+   * [深入剖析可重入锁ReentrantLock](Chapter07/ReentrantLock.md)
 
 * Part VIII 中间件篇
    * [RabbitMq](Chapter08/RabbitmqInstallation.md)
    * [Kafka](Chapter08/KafkaInstallation.md)
    * [Zookeeper](Chapter08/ZookeeperInstallation.md)
+   * [Redis高并发](Chapter08/RedisHighConcurrency.md)
 
 * Part IX 数据库篇
    * [mysql时区](Chapter09/MysqlServerTimezone.md)
    * [innodb线程](Chapter09/innodbThread.md)
    * [/g/G](Chapter09/gG.md)
    * [mysql命令集](Chapter09/CommandSet.md)
+   * [聚集索引和非聚集索引](Chapter09/ClusteredIndex.md)
+   * [OLTP&OLAP](Chapter09/OLTP&OLAP.md)
+   * [术语](Chapter09/term.md)
 
 * Part X 网络篇
    * [Http与Https协议规范](Chapter10/http.md)
 
-* Part XI LINUX篇
-   * [linux下怎么查看cpu核数](Chapter11/cpu.md)
-   * [防火墙](Chapter11/firewall.md)
-   * [系统内核](Chapter11/core.md)
-  
-* Part XII JVM篇
-   * [jvm](./Chapter12/jvm.md)
-   * [jvm指令集](./Chapter12/jvm指令集.md)
-   * [jstack](./Chapter12/jstack.md)
+* Part XI SPRING篇
+
+
+* Part XII CLOUD篇
+   * [CAP](Chapter12/cap.md)
+   * [注册中心](Chapter12/RegistrationCenter.md)
+   * [Spring Cloud Stream](Chapter12/stream.md)
+   * [ZipkinServer](Chapter12/ZipkinServer.md)
+   * [Spring Cloud Sleuth](Chapter12/sleuth.md)
   
 * Part XIII 架构篇
    * [SAAS](./Chapter13/saas.md)
@@ -171,6 +177,11 @@
    * [Service配置及管理](./Chapter15/cas3.md)
    * [Service配置及管理](./Chapter15/cas4.md)
    * [客户端接入](./Chapter15/cas5.md)
+   
+* Part XVI 系统篇
+   * [查看cpu核数](Chapter16/cpu.md)
+   * [防火墙](Chapter16/firewall.md)
+   * [系统内核](Chapter16/core.md)
    
 * 附录
    * [翻墙](Chapter20/OverTheWall.md)
