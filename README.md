@@ -26,8 +26,9 @@
 ## 目录
 
 第一章 心得篇
-* 1.1  [程序](Chapter01/program.md)
-* 1.2  [计算机基础知识对程序员来说有多重要?](Chapter01/experience1.md)
+* 1.1 [程序](Chapter01/program.md)
+* 1.2 [计算机基础知识对程序员来说有多重要?](Chapter01/experience1.md)
+* 1.3 [书单](Chapter01/bookList.md)
 
 第二章 数据结构篇
 * 2.1  [数据结构总篇](Chapter02/DataStructure.md)
@@ -167,6 +168,9 @@
 * 7.1 [计算机体系结构基础知识](Chapter07/BasicKnowledgeOfComputerArchitecture.md)
 * 7.2 [java并发必知的计算机原理知识](Chapter07/JavaConcurrencyMustKnowComputerPrinciplesKnowledge.md)
 * 7.3 [java并发必知的底层CPU知识](Chapter07/JavaConcurrencyMustKnowTheUnderlyingCPUKnowledge.md)
+* 7.4 [JDK的互斥锁与共享锁](Chapter07/XSLock.md)
+* 7.5 [AQS的自旋锁](Chapter07/SpinLock.md)
+* 7.6 [CountDownLatch实现原理及案例](Chapter07/CountDownLatch.md)
 * 7.1 [深入剖析可重入锁ReentrantLock](Chapter07/ReentrantLock.md)
 
 第八章 中间件篇
@@ -174,6 +178,7 @@
 * 8.2 [Kafka](Chapter08/KafkaInstallation.md)
 * 8.3 [Zookeeper](Chapter08/ZookeeperInstallation.md)
 * 8.4 [Redis高并发](Chapter08/RedisHighConcurrency.md)
+* 8.5 [Redis 6.0之前为什么一直不使用多线程？](Chapter08/Redis6.md)
 
 第九章 数据库篇
 * 9.1 [mysql时区](Chapter09/MysqlServerTimezone.md)
@@ -185,10 +190,17 @@
 * 9.7 [术语](Chapter09/term.md)
 
 第十章 网络篇
-* 10.1 [Http与Https协议规范](Chapter10/http.md)
+* 10.1 [OSI模型概念](Chapter10/OSI.md)
+* 10.2 [网络层详解](Chapter10/NetworkLayer.md)
+* 10.3 [网际报文控制协议ICMP](Chapter10/ICMP.md)
+* 10.4 [TCP协议](Chapter10/TCP.md)
+* 10.2 [HTTP协议详解](Chapter10/http.md)
+* 10.3 [HTTPS协议详解](Chapter10/https.md)
 
 第十一章 SPRING篇
 
+* 11.1 [GenericWebApplicationContext](Chapter11/GenericWebApplicationContext.md)
+* 11.1 [SpringBoot中如何启动Tomcat流程](Chapter11/springTomcat.md)
 
 第十二章 CLOUD篇
 * 12.1 [CAP](Chapter12/cap.md)
